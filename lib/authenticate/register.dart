@@ -6,6 +6,9 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class Register extends StatefulWidget {
+  final Function toggleView;
+  Register({required this.toggleView});
+
   @override
   State<Register> createState() => _RegisterState();
 }
@@ -68,11 +71,7 @@ class _RegisterState extends State<Register> {
                               color: Color.fromARGB(196, 225, 56, 9)),
                           foregroundColor: Color.fromARGB(196, 225, 56, 9)),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SignIn()),
-                        );
+                        widget.toggleView();
                       },
                       child: const Text("    login    "),
                     ),

@@ -3,7 +3,8 @@ import 'package:anonsignin/authenticate/register.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
-  const SignIn({super.key});
+  final Function toggleView;
+  SignIn({required this.toggleView});
 
   @override
   State<SignIn> createState() => _SignInState();
@@ -70,10 +71,7 @@ class _SignInState extends State<SignIn> {
                               color: Color.fromARGB(196, 225, 56, 9)),
                           foregroundColor: Color.fromARGB(196, 225, 56, 9)),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Register()),
-                        );
+                        widget.toggleView();
                       },
                       child: const Text(" Register"),
                     ),
