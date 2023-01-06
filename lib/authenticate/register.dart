@@ -1,22 +1,20 @@
 import 'package:anonsignin/authenticate/auth.dart';
-import 'package:anonsignin/authenticate/register.dart';
+import 'package:anonsignin/authenticate/signin.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/container.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({super.key});
-
+class Register extends StatefulWidget {
   @override
-  State<SignIn> createState() => _SignInState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
-
-  //Text fields states
 
   String email = "";
   String password = "";
-  String error = "";
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +55,7 @@ class _SignInState extends State<SignIn> {
                               color: Color.fromARGB(196, 225, 56, 9)),
                           foregroundColor: Color.fromARGB(196, 225, 56, 9)),
                       onPressed: () {},
-                      child: const Text("  Login  "),
+                      child: const Text("  Register  "),
                     ),
                   ),
                   Padding(
@@ -72,10 +70,11 @@ class _SignInState extends State<SignIn> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Register()),
+                          MaterialPageRoute(
+                              builder: (context) => const SignIn()),
                         );
                       },
-                      child: const Text(" Register"),
+                      child: const Text("    login    "),
                     ),
                   ),
                 ]),
@@ -180,7 +179,7 @@ class _SignInState extends State<SignIn> {
                               print(password);
                             },
                             child: const Text(
-                              "      Login     ",
+                              "      Register     ",
                             ),
                           ),
                         ),
