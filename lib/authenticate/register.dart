@@ -20,6 +20,7 @@ class _RegisterState extends State<Register> {
 
   String email = "";
   String password = "";
+  String error = "";
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +130,7 @@ class _RegisterState extends State<Register> {
                                   : null,
                               onChanged: (val) {
                                 setState(() {
-                                  password = val;
+                                  password = val.toString();
                                 });
                               },
                               obscureText: true,
@@ -186,13 +187,28 @@ class _RegisterState extends State<Register> {
                                       const Color.fromARGB(196, 255, 192, 153)),
                               onPressed: () async {
                                 //To check fot form validation
-                                if (_formKey.currentState!.validate());
+                                if (_formKey.currentState!.validate()) {
+                                  dynamic result =
+                                      await _auth.RegisterWithEmailAndPassword(
+                                          email, password);
+                                  if (result == null) {
+                                    setState(() {
+                                      error = "Invalid email or password";
+                                    });
+                                  }
+                                }
                               },
                               child: const Text(
                                 "      Register     ",
                               ),
                             ),
                           ),
+                          const SizedBox(
+                            height: 12.0,
+                          ),
+                          Text(error,
+                              style: const TextStyle(
+                                  color: Colors.red, fontSize: 14))
                         ]),
                   )
                 ],
