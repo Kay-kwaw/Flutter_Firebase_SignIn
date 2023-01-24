@@ -184,8 +184,16 @@ class _SignInState extends State<SignIn> {
                                       const Color.fromARGB(196, 255, 192, 153)),
                               onPressed: () async {
                                 if (_formKey.currentState!.validate()) {
-                                  print(email);
-                                  print(password);
+                                  //
+                                  dynamic result =
+                                      await _auth.SignInwithEmailAndPassword(
+                                          email, password);
+                                  if (result == null) {
+                                    setState(() {
+                                      error =
+                                          "Could not sign in with email and password";
+                                    });
+                                  }
                                 }
                               },
                               child: const Text(
@@ -193,6 +201,12 @@ class _SignInState extends State<SignIn> {
                               ),
                             ),
                           ),
+                          const SizedBox(
+                            height: 12.0,
+                          ),
+                          Text(error,
+                              style: const TextStyle(
+                                  color: Colors.red, fontSize: 14))
                         ]),
                   )
                 ],
