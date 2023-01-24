@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:anonsignin/models/user.dart';
+import 'package:anonsignin/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
@@ -43,6 +44,9 @@ class AuthService {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       User? user = result.user;
+      //create a new document for the new user with the uid
+      await DatabaseService(uid: user!.uid)
+          .updateUserData('0', "kwaw kumi", 100);
       return _userFromFirebaseUser(user!);
     } catch (e) {
       print(e.toString());

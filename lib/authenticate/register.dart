@@ -1,10 +1,6 @@
 import 'package:anonsignin/authenticate/auth.dart';
-import 'package:anonsignin/authenticate/signin.dart';
 import 'package:anonsignin/shared/loading.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class Register extends StatefulWidget {
   final Function toggleView;
